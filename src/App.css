@@ -1,0 +1,182 @@
+body {
+  background-color: rgb(212, 17, 114);
+}
+
+.main-container {
+  display: flex;
+  flex-direction: row;
+}
+
+@media screen and (max-width:900px) {
+  .main-container {
+    flex-direction: column;
+    align-self: flex-start;
+  }
+
+  .suspend-todo {
+    /* vertical-align: middle; */
+
+
+
+  }
+}
+
+
+
+.myanni {
+  text-align: center;
+  animation: myanni .7s cubic-bezier(.215, .61, .355, 9.000);
+}
+
+
+
+@keyframes myanni {
+  0% {
+    letter-spacing: -.5em;
+    opacity: 0
+  }
+
+  40% {
+    opacity: .6
+  }
+
+  100% {
+    opacity: 1
+  }
+}
+
+
+
+.add-btn {
+  width: 100px;
+  max-width: 100px;
+  min-width: 100px;
+  border-radius: 10px;
+  margin-top: 3px;
+  border: none;
+  color: white;
+  font-size: small;
+  padding: 5px;
+
+}
+
+.suspend-l {
+  color: rgb(8, 112, 181);
+
+}
+
+.start-l {
+  color: rgb(50, 204, 160);
+
+}
+
+.complete-l {
+  color: rgb(65, 230, 65);
+
+}
+
+.todo-l {
+  color: rgb(79, 3, 79);
+
+}
+
+
+.add-btn {
+  background-color: rgb(79, 3, 79);
+}
+
+.start {
+  background-color: rgb(50, 204, 160);
+  padding: 10px;
+
+}
+
+.complete {
+  background-color: rgb(65, 230, 65);
+  padding: 10px;
+
+}
+
+.suspend {
+  background-color: rgb(8, 112, 181);
+  padding: 10px;
+}
+
+.todo-container {
+  width: 500px;
+  color: rgb(6, 0, 0);
+  font-size: 24px;
+  border: 1px solid #f53cf5;
+  border-radius: 20px;
+
+  /* border: 1px solid black; */
+}
+
+.suspend-todo {
+  width: 500px;
+  font-size: 24px;
+  color: white;
+  border: 1px solid #f53cf5;
+  margin-left: 3px;
+  border-radius: 20px;
+
+  /* border: 1px solid black; */
+
+}
+
+.start-todo {
+  width: 500px;
+  font-size: 24px;
+  border: 1px solid #f53cf5;
+  margin-left: 3px;
+  border-radius: 20px;
+
+  /* border: 1px solid black; */
+}
+
+.complete-todo {
+  width: 500px;
+  font-size: 24px;
+  border-radius: 20px;
+  border: 1px solid #f53cf5;
+  margin-left: 3px;
+
+}
+
+
+
+.todo-div {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 30px;
+
+}
+
+.input-todo {
+  width: 500px;
+  padding: 20px;
+  border-radius: 10px;
+  margin-right: 10px;
+
+}
+
+.action-div {
+  display: flex;
+  justify-content: space-between;
+  list-style-type: none;
+  color: bisque;
+}
+
+.action {
+  display: flex;
+  align-items: center;
+
+}
+
+.delete-icon {
+  color: rgb(173, 147, 250);
+}
+
+.edit-icon {
+  color: rgb(223, 243, 246);
+}
