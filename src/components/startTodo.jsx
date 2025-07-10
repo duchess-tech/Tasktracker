@@ -25,25 +25,29 @@ function StartTodo({ complete, suspend, start, setStart, todo }) {
 
     return (
 
-        <div className="start-todo ">
-            <h1 className="myanni start-l" >START</h1>
-            {
+        <div className='sm:mb-9'>
+            <div className="w-96 p-2 border-2 border-blueop text-center">
+                <h1 className="myanni text-blueop  border-blueop" >START</h1>
+            </div>            {
                 start.map((t, i) => (
-                    <ul className="action-div">
-                        <li key={i}>{t.title}</li>
+                    <div className="w-96 border-r-2 border-blueop  p-3 ">
+
+                        <ul className="flex justify-between text-white  list-none">
+                            <li key={i}>{t.title}</li>
 
 
-                        <div className="action">
-                            <AiFillDelete className="delete-icon" onClick={() => removetodo2(t.id)} />
+                            <div className="flex">
+                                <AiFillDelete className="del-btn text-red cursor-pointer" onClick={() => removetodo2(t.id)} />
 
-                            <button className="suspend" onClick={() => suspendstart(t.id)}></button>
-                            <button className="complete" onClick={() => completestart(t.id)}> </button>
-                        </div>
-                    </ul>
+                                <button className="bg-blue mr-2 rounded-full p-2" onClick={() => suspendstart(t.id)}></button>
+                                <button className="bg-green  rounded-full p-2" onClick={() => completestart(t.id)}> </button>
+                            </div>
+                        </ul>
+                    </div>
+
                 ))
             }
-        </div>
 
-    )
+        </div>)
 }
 export default StartTodo

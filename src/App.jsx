@@ -1,3 +1,5 @@
+
+
 import React, { useState } from 'react'
 import { useEffect } from 'react'
 import './App.css'
@@ -38,18 +40,16 @@ function App() {
   const removetodo = id => {
     const del = [...todo].filter(todos => todos.id !== id)      //remove from todo
     settodo(del)
-    console.log(del)
   }
 
 
 
 
   const changestart = (id) => {
-    const sort = todo.find((sr) => sr.id === id)                           //from todo to stsrt
+    const sort = todo.find((sr) => sr.id === id)                           //from todo to start
     start.push(sort)
     const delsort = [...todo].filter(todos => todos.id !== id)
     settodo(delsort)
-    console.log(start)
 
   }
   const changesuspend = (id) => {
@@ -60,7 +60,6 @@ function App() {
   }
   const Add = (e) => {
     e.preventDefault();
-    console.log('why are you not working')
 
     if (editid) {                                                         //add todo 
       const edittodo = todo.find((i) => i.id === editid)
@@ -78,7 +77,6 @@ function App() {
       settodo([...todo, { id: uuid(), title: input }])
 
       setInput('')
-      console.log(todo)
     }
   };
 
@@ -86,47 +84,51 @@ function App() {
 
 
 
-  return (<>
-    <div className='todo-div'>
-      <input className="input-todo" type='text' value={input} onChange={change} placeholder='Add a todo'>
+  return (
+    <div className=''>
+      <div className='flex justify-center mt-9 mb-9'>
+        <input className="lg:w-1/4 p-2 sm:w-1/2 border-2 rounded-xl mr-3" type='text' value={input} onChange={change} placeholder='Add a todo'>
 
-      </input>
-      <button className="add-btn" onClick={Add}>{editid ? 'EDIT' : 'ADD'}</button>
+        </input>
+        <button className="w-56 rounded-xl sm:w-40 p-2 border-2 text-white text-sm" onClick={Add}>{editid ? 'Edit' : 'Add'}</button>
+      </div>
+      <div className='flex justify-around  md:justify-between sm:p-5 sm:flex-wrap  sm:justify-center'>
 
-    </div>
-    <div className='main-container'>
-
-      <div className='todo-container'>
-        <h1 className="myanni todo-l">TASK</h1>
-
-        {todo.map((todos, index) =>
-
-        (<ul className='action-div'>
-          <li key={todos.id}>{todos.title} </li>
-
-          <div className="action">
-            <AiFillDelete className="delete-icon" onClick={() => removetodo(todos.id)} />
-            {<TiEdit className="edit-icon" onClick={() => edittodo(todos.id)} />}
-
-            <button className="start" onClick={() => changestart(todos.id)}></button>
-            <button className="suspend" onClick={() => changesuspend(todos.id)}></button>
+        <div className=' sm:mb-9'>
+          <div className='w-96  border-2 border-ash text-center p-2'>
+            <h1 className="myanni text-ash">TASK</h1>
           </div>
 
-        </ul>)
-        )}
+          {todo.map((todos, index) =>
+          (
+            <div className='w-96   border-r-2 border-ash text-lg p-2' key={index}>
+              <ul className='flex  justify-between text-white list-none'>
+                <li key={todos.id}>{todos.title} </li>
 
-      </div>
-      <div>
-        <StartTodo start={start} suspend={suspend} todo={todo} setStart={setStart} complete={complete} />
-      </div>
-      <div>
-        <SuspendTodo start={start} suspend={suspend} setsuspend={setsuspend} complete={complete} />
-      </div>
-      <div>
-        <CompleteTodo complete={complete} setComplete={setComplete} />
+                <div className="flex">
+                  <AiFillDelete className="del-btn text-red  cursor-pointer" onClick={() => removetodo(todos.id)} />
+                  {<TiEdit className="edit-btn cursor-pointer" onClick={() => edittodo(todos.id)} />}
 
-      </div>
-    </div></>
+                  <button className="bg-blueop mr-2 rounded-full p-2" onClick={() => changestart(todos.id)}></button>
+                  <button className="bg-blue p-2 rounded-full " onClick={() => changesuspend(todos.id)}></button>
+                </div>
+
+              </ul>
+            </div>
+          )
+          )}
+        </div>
+        <div>
+          <StartTodo start={start} suspend={suspend} todo={todo} setStart={setStart} complete={complete} />
+        </div>
+        <div>
+          <SuspendTodo start={start} suspend={suspend} setsuspend={setsuspend} complete={complete} />
+        </div>
+        <div>
+          <CompleteTodo complete={complete} setComplete={setComplete} />
+
+        </div>
+      </div> </div>
   )
 }
 export default App

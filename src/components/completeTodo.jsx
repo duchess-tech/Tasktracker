@@ -10,22 +10,30 @@ function CompleteTodo({ complete, setComplete }) {
         console.log(del)
     }
     return (
-        <div className="complete-todo">
-            <h1 className="myanni complete-l">COMPLETE</h1>
+
+
+        <div >
+            <div className="w-96 border-green  border-2 p-2 text-center">
+                <h1 className="myanni text-green">COMPLETE</h1>
+
+            </div>
 
 
             {
                 complete.map((t, i) => (
-                    <ul className="action-div">
-                        <li key={i}>{t.title}</li>
+                    <div className="w-96 border-r-2 border-green  p-3">
+
+                        <ul className="flex justify-between text-white list-none">
+                            <li key={i}>{t.title}</li>
+
+                            <div className="flex ">
+                                <AiFillDelete className="del-btn text-red  cursor-pointer " onClick={() => removetodo4(t.id)} />
 
 
-                        <div className="action">
-                            <AiFillDelete className="delete-icon" onClick={() => removetodo4(t.id)} />
+                            </div>
+                        </ul>
+                    </div>
 
-
-                        </div>
-                    </ul>
                 ))
             }
         </div>
