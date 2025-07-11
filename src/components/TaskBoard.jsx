@@ -5,7 +5,7 @@ import { MdPlayArrow, MdPause, MdDone } from "react-icons/md";
 
 const TaskList = ({ tasks, onDelete, onEdit, onStart, onSuspend, onComplete }) => {
     return (
-        <div>
+        <div className="">
             <h2 className="text-xl font-bold mb-4 text-center text-white">Task List</h2>
             <div className="space-y-4 pr-2 ">
                 {tasks.length === 0 ? (
