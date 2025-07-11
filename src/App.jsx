@@ -4,7 +4,7 @@ import { v4 as uuid } from 'uuid';
 import Navbar from './components/Navbar';
 import TaskList from './components/TaskBoard';
 import StartTodo from './components/StartTodo';
-import SuspendTodo from './components/SuspendTodo';
+import SuspendTodo from './components/suspendTodo';
 import CompleteTodo from './components/CompleteTodo';
 import { AnimatePresence, motion } from 'framer-motion';
 
