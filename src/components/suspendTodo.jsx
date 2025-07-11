@@ -1,51 +1,35 @@
-import { AiFillDelete } from "react-icons/ai"
-function SuspendTodo({ complete, start, suspend, setsuspend, todo }) {
+import React from "react";
+import { AiFillDelete } from "react-icons/ai";
+import { MdPlayArrow } from "react-icons/md";
 
-
-    const removetodo3 = id => {
-        const del = [...suspend].filter(s => s.id !== id)           //remove from suspend todo
-        setsuspend(del)
-    }
-
-    const startsuspend = (id) => {
-        const sort = suspend.find((sr) => sr.id === id)
-        start.push(sort)                                                    // from suspend to start
-        const delsort = [...suspend].filter(todos => todos.id !== id)
-        setsuspend(delsort)
-
-    }
-    const completesuspend = (id) => {
-        const sort = suspend.find((sr) => sr.id === id)
-        complete.push(sort)
-        const delsort = [...suspend].filter(todos => todos.id !== id)           // from suspend to complete
-        setsuspend(delsort)
-
-    }
+const SuspendTodo = ({ suspendTasks, onRemove, onStart }) => {
     return (
-        <div className='sm:mb-9'>
-            <div className="w-96 border-sky  border-2 p-2 text-center ">
-                <h1 className="myanni text-sky"> SUSPENDED</h1>
-            </div>
-            {
-                suspend.map((t, i) => (
-                    <div className="w-96 border-r-2 border-sky p-3 ">
-
-                        <ul className="flex justify-between text-white list-none">
-                            <li key={i}>{t.title}</li>
-
-
-                            <div className="flex">
-                                <AiFillDelete className="del-btn text-red  cursor-pointer" onClick={() => removetodo3(t.id)} />
-                                <button className="bg-blueop   mr-2  rounded-full p-2" onClick={() => startsuspend(t.id)}> </button>
-                                <button className="bg-green rounded-full p-2" onClick={() => completesuspend(t.id)}> </button>
-
+        <div>
+            <h2 className="text-xl font-bold mb-4 text-center text-white">Suspended Tasks</h2>
+            <div className="space-y-4 pr-2">
+                {suspendTasks.length === 0 ? (
+                    <p className="text-sm text-center text-gray-300">No suspended tasks...</p>
+                ) : (
+                    suspendTasks.map((task) => (
+                        <div
+                            key={task.id}
+                            className="flex items-center justify-between bg-yellow-800 px-4 py-2 rounded shadow-md"
+                        >
+                            <span className="truncate max-w-[150px] text-white">{task.title}</span>
+                            <div className="flex gap-2">
+                                <button onClick={() => onRemove(task.id)} title="Remove">
+                                    <AiFillDelete className="text-red-500 text-xl hover:scale-110 transition" />
+                                </button>
+                                <button onClick={() => onStart(task.id)} title="Start">
+                                    <MdPlayArrow className="text-blue-400 text-xl hover:scale-110 transition" />
+                                </button>
                             </div>
-                        </ul>
-                    </div>
+                        </div>
+                    ))
+                )}
+            </div>
+        </div>
+    );
+};
 
-                ))
-            }
-
-        </div>)
-}
-export default SuspendTodo
+export default SuspendTodo;

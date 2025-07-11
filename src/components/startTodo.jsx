@@ -1,53 +1,38 @@
-import { AiFillDelete } from "react-icons/ai"
-function StartTodo({ complete, suspend, start, setStart, todo }) {
+import React from "react";
+import { AiFillDelete } from "react-icons/ai";
+import { MdPause, MdDone } from "react-icons/md";
 
-
-    const removetodo2 = id => {
-        const del = [...start].filter(s => s.id !== id)            //remove from start todo
-        setStart(del)
-        console.log(del)
-    }
-    const suspendstart = (id) => {
-        const sort = start.find((ss) => ss.id === id)
-        suspend.push(sort)
-        const del = [...todo].filter(todos => todos.id !== id)
-        setStart(del)
-    }
-    const completestart = (id) => {
-        const sort = start.find((cs) => cs.id === id)
-        console.log(sort)
-
-        complete.push(sort)
-        const del = [...todo].filter(todos => todos.id !== id)
-        setStart(del)
-    }
-
-
+const StartTodo = ({ startTasks, onRemove, onSuspend, onComplete }) => {
     return (
-
-        <div className='sm:mb-9'>
-            <div className="w-96 p-2 border-2 border-blueop text-center">
-                <h1 className="myanni text-blueop  border-blueop" >START</h1>
-            </div>            {
-                start.map((t, i) => (
-                    <div className="w-96 border-r-2 border-blueop  p-3 ">
-
-                        <ul className="flex justify-between text-white  list-none">
-                            <li key={i}>{t.title}</li>
-
-
-                            <div className="flex">
-                                <AiFillDelete className="del-btn text-red cursor-pointer" onClick={() => removetodo2(t.id)} />
-
-                                <button className="bg-blue mr-2 rounded-full p-2" onClick={() => suspendstart(t.id)}></button>
-                                <button className="bg-green  rounded-full p-2" onClick={() => completestart(t.id)}> </button>
+        <div className="">
+            <h2 className="text-xl font-bold mb-4 text-center text-white">Started Tasks</h2>
+            <div className="space-y-4  pr-2">
+                {startTasks.length === 0 ? (
+                    <p className="text-sm text-center text-gray-300">No tasks started...</p>
+                ) : (
+                    startTasks.map((task) => (
+                        <div
+                            key={task.id}
+                            className="flex items-center justify-between bg-blue-800 px-4 py-2 rounded shadow-md"
+                        >
+                            <span className="truncate max-w-[150px] text-white">{task.title}</span>
+                            <div className="flex gap-2">
+                                <button onClick={() => onRemove(task.id)} title="Remove">
+                                    <AiFillDelete className="text-red-500 text-xl hover:scale-110 transition" />
+                                </button>
+                                <button onClick={() => onSuspend(task.id)} title="Suspend">
+                                    <MdPause className="text-yellow-300 text-xl hover:scale-110 transition" />
+                                </button>
+                                <button onClick={() => onComplete(task.id)} title="Complete">
+                                    <MdDone className="text-green-400 text-xl hover:scale-110 transition" />
+                                </button>
                             </div>
-                        </ul>
-                    </div>
+                        </div>
+                    ))
+                )}
+            </div>
+        </div>
+    );
+};
 
-                ))
-            }
-
-        </div>)
-}
-export default StartTodo
+export default StartTodo;

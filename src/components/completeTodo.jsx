@@ -1,43 +1,29 @@
-import '../App.css'
+import React from "react";
+import { AiFillDelete } from "react-icons/ai";
 
-import { AiFillDelete } from "react-icons/ai"
-
-function CompleteTodo({ complete, setComplete }) {
-
-    const removetodo4 = id => {
-        const del = [...complete].filter(s => s.id !== id)           //remove from complete todo
-        setComplete(del)
-        console.log(del)
-    }
+const CompleteTodo = ({ completeTasks, onRemove }) => {
     return (
-
-
-        <div >
-            <div className="w-96 border-green  border-2 p-2 text-center">
-                <h1 className="myanni text-green">COMPLETE</h1>
-
+        <div>
+            <h2 className="text-xl font-bold mb-4 text-center text-white">Completed Tasks</h2>
+            <div className="space-y-4 max-h-[60vh] overflow-y-auto pr-2">
+                {completeTasks.length === 0 ? (
+                    <p className="text-sm text-center text-gray-300">No completed tasks...</p>
+                ) : (
+                    completeTasks.map((task) => (
+                        <div
+                            key={task.id}
+                            className="flex items-center justify-between bg-green-800 px-4 py-2 rounded shadow-md"
+                        >
+                            <span className="truncate max-w-[150px] text-white">{task.title}</span>
+                            <button onClick={() => onRemove(task.id)} title="Remove">
+                                <AiFillDelete className="text-red-400 text-xl hover:scale-110 transition" />
+                            </button>
+                        </div>
+                    ))
+                )}
             </div>
-
-
-            {
-                complete.map((t, i) => (
-                    <div className="w-96 border-r-2 border-green  p-3">
-
-                        <ul className="flex justify-between text-white list-none">
-                            <li key={i}>{t.title}</li>
-
-                            <div className="flex ">
-                                <AiFillDelete className="del-btn text-red  cursor-pointer " onClick={() => removetodo4(t.id)} />
-
-
-                            </div>
-                        </ul>
-                    </div>
-
-                ))
-            }
         </div>
+    );
+};
 
-    )
-}
-export default CompleteTodo
+export default CompleteTodo;
