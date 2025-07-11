@@ -1,0 +1,29 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Custom Scrollbar */
+.custom-scroll::-webkit-scrollbar {
+    width: 8px;
+}
+
+.custom-scroll::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+.custom-scroll::-webkit-scrollbar-thumb {
+    background: #64748b;
+    /* slate-500 */
+    border-radius: 4px;
+}
+
+.custom-scroll:hover::-webkit-scrollbar-thumb {
+    background: #94a3b8;
+    /* slate-400 */
+}
+
+@layer utilities {
+    .animate-focus {
+        @apply ring-4 ring-yellow-400 transition duration-700;
+    }
+}
