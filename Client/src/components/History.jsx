@@ -90,7 +90,7 @@ const History = () => {
                 <div className="flex justify-end gap-2">
                     <button
                         onClick={async () => {
-                            toast.dismiss(t.id)
+                            toast.dismiss(t.id); // Close the confirmation dialog
                             try {
                                 await axios.delete('http://localhost:5000/history');
                                 setHistory([]);
